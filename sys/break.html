@@ -1,1 +1,50 @@
 
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💥 BREAK · System bricht · 4u</title>
+    <style>
+        :root { --bg: #0a0a0f; --fg: #0f0; --break: #f4f; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--bg);
+            color: var(--fg);
+            font-family: 'Consolas', monospace;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+            background-image: radial-gradient(ellipse at center, rgba(255,68,255,0.05) 0%, transparent 70%);
+        }
+        .response { font-size: 80px; animation: break 1.5s ease-in-out infinite; }
+        @keyframes break {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+            25% { transform: scale(1.2) rotate(-10deg); }
+            75% { transform: scale(0.8) rotate(10deg); opacity: 0.4; }
+        }
+        h1 { color: var(--break); font-size: 32px; letter-spacing: 4px; }
+        .desc { color: #666; font-size: 14px; }
+        .back { color: #444; text-decoration: none; border: 1px solid #333; padding: 8px 20px; border-radius: 20px; transition: 0.3s; }
+        .back:hover { border-color: var(--break); color: var(--break); }
+        .meta { color: #333; font-size: 12px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="response">💥</div>
+    <h1>BREAK · System bricht</h1>
+    <p class="desc">Das System hat einen Unterbruch erkannt.</p>
+    <a href="../index.html" class="back">← Zurück zu 4u</a>
+    <div class="meta">4u · Response Layer 7 · © iki1uc wieimmer</div>
+    <script>
+        console.log('💥 BREAK · System bricht · 4u');
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') window.location.href = '../index.html';
+        });
+    </script>
+</body>
+</html>
