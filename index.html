@@ -50,7 +50,6 @@ header h1 .layer { color: var(--echo); }
 header h1 .iki { color: var(--root); }
 #info-bar { font-size: 10px; color: #666; display: flex; gap: 12px; align-items: center; }
 
-/* ===== MAIN ===== */
 main {
     display: grid;
     grid-template-columns: 3fr 1.2fr;
@@ -87,7 +86,6 @@ main {
 }
 #canvas-overlay .ok { color: var(--ok); }
 
-/* ===== PANEL ===== */
 #panel {
     background: rgba(10,10,15,0.6);
     border: 1px solid rgba(255,255,255,0.04);
@@ -108,7 +106,6 @@ main {
     letter-spacing: 2px;
 }
 
-/* ===== ID-BLOCK ===== */
 #id-block {
     background: rgba(255,255,255,0.02);
     border-radius: 8px;
@@ -118,7 +115,6 @@ main {
 #id-block .label { color: #666; font-size: 7px; text-transform: uppercase; letter-spacing: 1px; }
 #id-block .value { color: var(--gold); font-size: 10px; }
 
-/* ===== RESPONSES ===== */
 #responses {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -143,7 +139,6 @@ main {
 .response.active { border-color: var(--gold); background: rgba(255,215,61,0.05); }
 .response.active .sym { filter: brightness(1.5); }
 
-/* ===== LOG ===== */
 #log {
     flex: 1;
     overflow-y: auto;
@@ -166,7 +161,6 @@ main {
 #log .msg.void { color: var(--void); }
 #log .msg.root { color: var(--root); }
 
-/* ===== METRIQUES ===== */
 #metriques {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -182,7 +176,6 @@ main {
 .metrique .label { color: #666; font-size: 6px; text-transform: uppercase; letter-spacing: 1px; }
 .metrique .value { font-size: 11px; font-weight: 300; }
 
-/* ===== CONTROLS ===== */
 #controls {
     display: flex;
     gap: 4px;
@@ -256,7 +249,6 @@ footer .c { color: var(--gold); }
     </div>
 
     <div id="panel">
-        <!-- ID-BLOCK -->
         <div id="id-block">
             <div class="label">ID · 4u</div>
             <div class="value">OK / NOK / FLOW / BREAK / ECHO / VOID / ROOT</div>
@@ -342,7 +334,8 @@ footer .c { color: var(--gold); }
 // 1. 4u · RESPONSE LAYER 7 · ID + LIVE
 // ============================================================
 
-const RESPONSES = {
+// --- ALLE FUNKTIONEN GLOBAL MACHEN (für onclick) ---
+window.RESPONSES = {
     OK:    { sym: '✅', label: 'OK',    desc: 'Zustimmung',   color: '#4f4', class: 'ok' },
     NOK:   { sym: '❌', label: 'NOK',   desc: 'Ablehnung',    color: '#f44', class: 'nok' },
     FLOW:  { sym: '🌊', label: 'FLOW',  desc: 'System fließt', color: '#4ff', class: 'flow' },
@@ -352,7 +345,7 @@ const RESPONSES = {
     ROOT:  { sym: '🌳', label: 'ROOT',  desc: 'Rückkehr',     color: '#ffd700', class: 'root' }
 };
 
-const RESPONSE_KEYS = ['OK', 'NOK', 'FLOW', 'BREAK', 'ECHO', 'VOID', 'ROOT'];
+window.RESPONSE_KEYS = ['OK', 'NOK', 'FLOW', 'BREAK', 'ECHO', 'VOID', 'ROOT'];
 
 // ============================================================
 // 2. CANVAS SETUP
@@ -382,7 +375,7 @@ const state = {
     cycle: 0,
     t: 0,
     active: 'OK',
-    response: RESPONSES.OK,
+    response: window.RESPONSES.OK,
     syn: 0.5,
     quant: 0.5,
     respo: 0.5,
@@ -408,11 +401,11 @@ function log(msg, type = 'info') {
 }
 
 // ============================================================
-// 5. 4u · RESPONSE
+// 5. 4u · RESPONSE — GLOBALE FUNKTION FÜR ONCLICK
 // ============================================================
 
-function setResponse(key) {
-    const resp = RESPONSES[key] || RESPONSES.OK;
+window.setResponse = function(key) {
+    const resp = window.RESPONSES[key] || window.RESPONSES.OK;
     state.active = key;
     state.response = resp;
 
@@ -434,7 +427,7 @@ function setResponse(key) {
     document.getElementById('phi-value').textContent = state.phi.toFixed(3);
 
     document.querySelector('#canvas-overlay .ok').textContent = resp.sym;
-}
+};
 
 // ============================================================
 // 6. RENDER
@@ -472,12 +465,12 @@ render();
 // ============================================================
 
 function drawResponsesRing() {
-    const n = RESPONSE_KEYS.length;
+    const n = window.RESPONSE_KEYS.length;
     const r = radius * 0.6;
 
     for (let i = 0; i < n; i++) {
-        const key = RESPONSE_KEYS[i];
-        const resp = RESPONSES[key];
+        const key = window.RESPONSE_KEYS[i];
+        const resp = window.RESPONSES[key];
         const angle = (i / n) * Math.PI * 2 + state.t * 0.02;
         const dist = r * 0.85;
         const x = cx + Math.cos(angle) * dist;
@@ -612,33 +605,33 @@ function drawSynQuant() {
 }
 
 // ============================================================
-// 8. CONTROLS
+// 8. CONTROLS — MIT ONCLICK DIREKT
 // ============================================================
-document.getElementById('btn-ok').addEventListener('click', function() {
-    setResponse('OK');
+document.getElementById('btn-ok').onclick = function() {
+    window.setResponse('OK');
     document.getElementById('state-display').textContent = '● OK';
     document.getElementById('state-display').style.color = '#4f4';
-});
+};
 
-document.getElementById('btn-nok').addEventListener('click', function() {
-    setResponse('NOK');
+document.getElementById('btn-nok').onclick = function() {
+    window.setResponse('NOK');
     document.getElementById('state-display').textContent = '● NOK';
     document.getElementById('state-display').style.color = '#f44';
-});
+};
 
-document.getElementById('btn-flow').addEventListener('click', function() {
-    setResponse('FLOW');
+document.getElementById('btn-flow').onclick = function() {
+    window.setResponse('FLOW');
     document.getElementById('state-display').textContent = '● FLOW';
     document.getElementById('state-display').style.color = '#4ff';
-});
+};
 
-document.getElementById('btn-root').addEventListener('click', function() {
-    setResponse('ROOT');
+document.getElementById('btn-root').onclick = function() {
+    window.setResponse('ROOT');
     document.getElementById('state-display').textContent = '● ROOT';
     document.getElementById('state-display').style.color = '#ffd700';
-});
+};
 
-document.getElementById('btn-auto').addEventListener('click', function() {
+document.getElementById('btn-auto').onclick = function() {
     state.autoMode = !state.autoMode;
     this.textContent = state.autoMode ? '⏸ PAUSE' : '▶ AUTO';
     if (state.autoMode) {
@@ -646,44 +639,44 @@ document.getElementById('btn-auto').addEventListener('click', function() {
         log('▶ AUTO · 4u wandert', 'flow');
         if (window.autoInterval) clearInterval(window.autoInterval);
         window.autoInterval = setInterval(function() {
-            const idx = Math.floor(Math.random() * RESPONSE_KEYS.length);
-            const key = RESPONSE_KEYS[idx];
-            setResponse(key);
+            const idx = Math.floor(Math.random() * window.RESPONSE_KEYS.length);
+            const key = window.RESPONSE_KEYS[idx];
+            window.setResponse(key);
             document.getElementById('state-display').textContent = `● ${key}`;
             const colors = { OK:'#4f4', NOK:'#f44', FLOW:'#4ff', BREAK:'#f4f', ECHO:'#ff4', VOID:'#666', ROOT:'#ffd700' };
             document.getElementById('state-display').style.color = colors[key] || '#666';
-            log(`🔄 ${RESPONSES[key].sym} ${key}`, RESPONSES[key].class);
+            log(`🔄 ${window.RESPONSES[key].sym} ${key}`, window.RESPONSES[key].class);
         }, 2500);
     } else {
         clearInterval(window.autoInterval);
         log('⏸ AUTO · Pause', 'void');
     }
-});
+};
 
 // ============================================================
 // 9. RESPONSE-KLICKS
 // ============================================================
-document.querySelectorAll('.response').forEach(el => {
-    el.addEventListener('click', function() {
+document.querySelectorAll('.response').forEach(function(el) {
+    el.onclick = function() {
         const key = this.dataset.resp;
-        setResponse(key);
+        window.setResponse(key);
         document.getElementById('state-display').textContent = `● ${key}`;
         const colors = { OK:'#4f4', NOK:'#f44', FLOW:'#4ff', BREAK:'#f4f', ECHO:'#ff4', VOID:'#666', ROOT:'#ffd700' };
         document.getElementById('state-display').style.color = colors[key] || '#666';
-    });
+    };
 });
 
 // ============================================================
 // 10. TASTATUR
 // ============================================================
 document.addEventListener('keydown', function(e) {
-    if (e.key === '1') setResponse('OK');
-    if (e.key === '2') setResponse('NOK');
-    if (e.key === '3') setResponse('FLOW');
-    if (e.key === '4') setResponse('BREAK');
-    if (e.key === '5') setResponse('ECHO');
-    if (e.key === '6') setResponse('VOID');
-    if (e.key === '7') setResponse('ROOT');
+    if (e.key === '1') window.setResponse('OK');
+    if (e.key === '2') window.setResponse('NOK');
+    if (e.key === '3') window.setResponse('FLOW');
+    if (e.key === '4') window.setResponse('BREAK');
+    if (e.key === '5') window.setResponse('ECHO');
+    if (e.key === '6') window.setResponse('VOID');
+    if (e.key === '7') window.setResponse('ROOT');
     if (e.key === ' ') { e.preventDefault(); document.getElementById('btn-auto').click(); }
 });
 
@@ -707,7 +700,7 @@ console.log('✦ 4u · Response Layer 7 · ID: 4u');
 console.log('OK · NOK · FLOW · BREAK · ECHO · VOID · ROOT');
 console.log('⌨️  1=OK 2=NOK 3=FLOW 4=BREAK 5=ECHO 6=VOID 7=ROOT  space=Auto');
 
-setResponse('OK');
+window.setResponse('OK');
 setTimeout(function() {
     log('✦ 4u bereit · Wähle eine Response', 'ok');
 }, 300);
