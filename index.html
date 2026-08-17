@@ -347,6 +347,18 @@ window.RESPONSES = {
 
 window.RESPONSE_KEYS = ['OK', 'NOK', 'FLOW', 'BREAK', 'ECHO', 'VOID', 'ROOT'];
 
+    import index from './index.js';
+    import { RESPONSES, setResponse } from './4u.js';
+    import { syn, quant, respo } from './respo.js';
+    import { router } from './router.js';
+
+    console.log('LIVEDOC geladen', index);
+    console.log('RESPONSES:', RESPONSES);
+    console.log('SYN:', syn(3));
+    console.log('QUANT:', quant(3));
+    console.log('RESPO:', respo(3, 9));
+    console.log('ROUTER:', router(3, 9));
+    
 // ============================================================
 // 2. CANVAS SETUP
 // ============================================================
