@@ -1,1 +1,58 @@
-
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔄 ECHO · Spiegelung · 4u</title>
+    <style>
+        :root { --bg: #0a0a0f; --fg: #0f0; --echo: #ff4; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--bg);
+            color: var(--fg);
+            font-family: 'Consolas', monospace;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+            background-image: radial-gradient(ellipse at center, rgba(255,255,68,0.05) 0%, transparent 70%);
+        }
+        .response { font-size: 80px; animation: echo 2s ease-in-out infinite; }
+        @keyframes echo {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.2); opacity: 0.4; }
+        }
+        h1 { color: var(--echo); font-size: 32px; letter-spacing: 4px; }
+        .desc { color: #666; font-size: 14px; }
+        .back { color: #444; text-decoration: none; border: 1px solid #333; padding: 8px 20px; border-radius: 20px; transition: 0.3s; }
+        .back:hover { border-color: var(--echo); color: var(--echo); }
+        .meta { color: #333; font-size: 12px; margin-top: 20px; }
+        .echo-text {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 8px;
+            color: #333;
+            opacity: 0.3;
+            transform: scaleX(-1);
+        }
+    </style>
+</head>
+<body>
+    <div class="response">🔄</div>
+    <h1>ECHO · Spiegelung</h1>
+    <p class="desc">Die Response wird zurückgespiegelt.</p>
+    <a href="../index.html" class="back">← Zurück zu 4u</a>
+    <div class="meta">4u · Response Layer 7 · © iki1uc wieimmer</div>
+    <div class="echo-text">🔄 ECHO · ECHO · ECHO</div>
+    <script>
+        console.log('🔄 ECHO · Spiegelung · 4u');
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') window.location.href = '../index.html';
+        });
+    </script>
+</body>
+</html>
