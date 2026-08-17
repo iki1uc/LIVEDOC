@@ -1,1 +1,57 @@
-
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌳 ROOT · Rückkehr · 4u</title>
+    <style>
+        :root { --bg: #0a0a0f; --fg: #0f0; --root: #ffd700; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--bg);
+            color: var(--fg);
+            font-family: 'Consolas', monospace;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+            background-image: radial-gradient(ellipse at center, rgba(255,215,61,0.05) 0%, transparent 70%);
+        }
+        .response { font-size: 80px; animation: root 2.5s ease-in-out infinite; }
+        @keyframes root {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+            50% { transform: scale(1.15) rotate(-5deg); opacity: 1; }
+        }
+        h1 { color: var(--root); font-size: 32px; letter-spacing: 4px; }
+        .desc { color: #666; font-size: 14px; }
+        .back { color: #444; text-decoration: none; border: 1px solid #333; padding: 8px 20px; border-radius: 20px; transition: 0.3s; }
+        .back:hover { border-color: var(--root); color: var(--root); }
+        .meta { color: #333; font-size: 12px; margin-top: 20px; }
+        .tree {
+            position: fixed;
+            bottom: 0; left: 50%;
+            transform: translateX(-50%);
+            font-size: 60px;
+            opacity: 0.05;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="response">🌳</div>
+    <h1>ROOT · Rückkehr zum Ursprung</h1>
+    <p class="desc">Die Response kehrt zum Ursprung zurück.</p>
+    <a href="../index.html" class="back">← Zurück zu 4u</a>
+    <div class="meta">4u · Response Layer 7 · © iki1uc wieimmer</div>
+    <div class="tree">🌳</div>
+    <script>
+        console.log('🌳 ROOT · Rückkehr · 4u');
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') window.location.href = '../index.html';
+        });
+    </script>
+</body>
+</html>
