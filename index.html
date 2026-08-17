@@ -3,31 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>4u · RESPONSE LAYER 7 · LIVE · iki1uc</title>
+<title>ALLXALL · 4D-SPIEL · TEAM-WORK · CAUSE</title>
 
 <style>
 :root {
     --bg: #0a0a0f;
     --fg: #0f0;
     --gold: #ffd700;
-    --ok: #4f4;
-    --nok: #f44;
-    --flow: #4ff;
-    --break: #f4f;
-    --echo: #ff4;
-    --void: #666;
-    --root: #ffd700;
+    --axis: #ff6b6b;
+    --layer: #6b6bff;
+    --field: #ffd93d;
+    --air: #4ff;
+    --aiv: #f4f;
+    --team: #4f4;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
     background: var(--bg);
     color: var(--fg);
-    font-family: 'Consolas', 'Courier New', monospace;
+    font-family: 'Consolas', monospace;
     min-height: 100vh;
     display: grid;
     grid-template-rows: auto 1fr auto;
     gap: 6px;
-    padding: 12px;
+    padding: 10px;
 }
 
 header {
@@ -35,190 +34,139 @@ header {
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid var(--gold);
-    padding-bottom: 8px;
+    padding-bottom: 6px;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 4px;
 }
 header h1 {
-    font-size: 18px;
+    font-size: 16px;
     color: var(--gold);
-    letter-spacing: 4px;
-    font-weight: 300;
+    letter-spacing: 3px;
 }
-header h1 .u4 { color: var(--flow); }
-header h1 .layer { color: var(--echo); }
-header h1 .iki { color: var(--root); }
-#info-bar { font-size: 10px; color: #666; display: flex; gap: 12px; align-items: center; }
+header h1 .all { color: var(--air); }
+header h1 .x { color: var(--field); }
+header h1 .team { color: var(--team); }
+#info-bar { font-size: 9px; color: #666; display: flex; gap: 8px; align-items: center; }
 
 main {
     display: grid;
     grid-template-columns: 3fr 1.2fr;
-    gap: 10px;
+    gap: 6px;
     height: 100%;
     min-height: 0;
 }
 
 #canvas-wrap {
-    background: rgba(10,10,15,0.6);
-    border: 1px solid rgba(255,255,255,0.04);
-    border-radius: 16px;
-    padding: 8px;
+    background: #0a0a0f;
+    border: 1px solid #1a1a2a;
+    border-radius: 10px;
+    padding: 6px;
     position: relative;
     overflow: hidden;
 }
 #canvas-wrap canvas {
     width: 100%;
     height: 100%;
-    border-radius: 10px;
+    border-radius: 6px;
     display: block;
 }
 #canvas-overlay {
     position: absolute;
-    bottom: 12px;
-    left: 12px;
-    font-size: 8px;
+    bottom: 8px;
+    left: 8px;
+    font-size: 7px;
     color: #444;
     pointer-events: none;
-    background: rgba(0,0,0,0.5);
-    padding: 4px 12px;
-    border-radius: 20px;
-    border: 1px solid rgba(255,255,255,0.04);
+    background: rgba(0,0,0,0.7);
+    padding: 3px 8px;
+    border-radius: 3px;
 }
-#canvas-overlay .ok { color: var(--ok); }
+#canvas-overlay .air { color: var(--air); }
+#canvas-overlay .aiv { color: var(--aiv); }
 
 #panel {
-    background: rgba(10,10,15,0.6);
-    border: 1px solid rgba(255,255,255,0.04);
-    border-radius: 16px;
-    padding: 10px;
+    background: #0a0a0f;
+    border: 1px solid #1a1a2a;
+    border-radius: 10px;
+    padding: 6px;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 3px;
     overflow-y: auto;
     max-height: 100%;
 }
-#panel h3 {
-    font-size: 10px;
-    color: #666;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-    padding-bottom: 4px;
-    font-weight: 300;
-    letter-spacing: 2px;
-}
-
-#id-block {
-    background: rgba(255,255,255,0.02);
-    border-radius: 8px;
-    padding: 6px 8px;
-    border: 1px solid rgba(255,255,255,0.04);
-}
-#id-block .label { color: #666; font-size: 7px; text-transform: uppercase; letter-spacing: 1px; }
-#id-block .value { color: var(--gold); font-size: 10px; }
-
-#responses {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 4px;
-}
-.response {
-    background: rgba(255,255,255,0.02);
-    border-radius: 8px;
-    padding: 6px 4px;
-    text-align: center;
-    border: 1px solid rgba(255,255,255,0.03);
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-.response:hover {
-    border-color: var(--gold);
-    background: rgba(255,215,61,0.05);
-}
-.response .sym { font-size: 18px; display: block; margin-bottom: 2px; }
-.response .label { color: #666; font-size: 7px; text-transform: uppercase; letter-spacing: 1px; }
-.response .desc { color: #555; font-size: 6px; }
-.response.active { border-color: var(--gold); background: rgba(255,215,61,0.05); }
-.response.active .sym { filter: brightness(1.5); }
+#panel h3 { font-size: 9px; color: #666; border-bottom: 1px solid #1a1a2a; padding-bottom: 3px; }
 
 #log {
     flex: 1;
     overflow-y: auto;
-    font-size: 8px;
+    font-size: 7px;
     color: #6a6a8a;
-    line-height: 1.4;
-    min-height: 40px;
+    line-height: 1.3;
+    min-height: 30px;
     max-height: 80px;
-    background: rgba(0,0,0,0.3);
-    border-radius: 8px;
-    padding: 4px 8px;
+    background: #06060a;
+    border-radius: 4px;
+    padding: 3px 5px;
 }
-#log .entry { padding: 2px 0; border-bottom: 1px solid rgba(255,255,255,0.02); }
-#log .time { color: #333; }
-#log .msg.ok { color: var(--ok); }
-#log .msg.nok { color: var(--nok); }
-#log .msg.flow { color: var(--flow); }
-#log .msg.break { color: var(--break); }
-#log .msg.echo { color: var(--echo); }
-#log .msg.void { color: var(--void); }
-#log .msg.root { color: var(--root); }
+#log .entry { padding: 1px 0; border-bottom: 1px solid #0a0a12; }
+#log .time { color: #444; }
+#log .msg.all { color: var(--air); }
+#log .msg.team { color: var(--team); }
+#log .msg.cause { color: var(--gold); }
+#log .msg.aiv { color: var(--aiv); }
 
-#metriques {
+#metrics {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 4px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 2px;
 }
-.metrique {
-    background: rgba(255,255,255,0.02);
-    border-radius: 6px;
-    padding: 4px 6px;
+.metric {
+    background: #0e0e1a;
+    border-radius: 3px;
+    padding: 3px 4px;
     text-align: center;
-    border: 1px solid rgba(255,255,255,0.03);
+    border: 1px solid #1a1a2a;
 }
-.metrique .label { color: #666; font-size: 6px; text-transform: uppercase; letter-spacing: 1px; }
-.metrique .value { font-size: 11px; font-weight: 300; }
+.metric .label { color: #666; font-size: 6px; text-transform: uppercase; }
+.metric .value { font-size: 10px; font-weight: bold; }
+.metric.air .value { color: var(--air); }
+.metric.aiv .value { color: var(--aiv); }
+.metric.team .value { color: var(--team); }
+.metric.cause .value { color: var(--gold); }
 
 #controls {
     display: flex;
-    gap: 4px;
+    gap: 2px;
     flex-wrap: wrap;
 }
 button {
-    background: rgba(255,255,255,0.03);
+    background: #111;
     color: var(--fg);
-    border: 1px solid rgba(255,255,255,0.06);
-    padding: 4px 14px;
-    border-radius: 20px;
+    border: 1px solid #333;
+    padding: 3px 10px;
+    border-radius: 4px;
     cursor: pointer;
     font-family: inherit;
     font-size: 8px;
-    transition: all 0.3s ease;
-    letter-spacing: 1px;
+    transition: all 0.2s;
 }
-button:hover {
-    background: rgba(255,215,61,0.08);
-    border-color: var(--gold);
-}
+button:hover { background: #1a1a2a; border-color: var(--gold); }
 button:active { transform: scale(0.95); }
-button.primary { border-color: var(--ok); color: var(--ok); }
-button.primary:hover { background: var(--ok); color: #000; }
-button.danger { border-color: var(--nok); color: var(--nok); }
-button.danger:hover { background: var(--nok); color: #000; }
-button.flow { border-color: var(--flow); color: var(--flow); }
-button.flow:hover { background: var(--flow); color: #000; }
-
-footer {
-    text-align: center;
-    font-size: 8px;
-    color: #444;
-    border-top: 1px solid rgba(255,255,255,0.03);
-    padding-top: 6px;
-    letter-spacing: 2px;
-}
-footer .c { color: var(--gold); }
+button.primary { border-color: var(--gold); color: var(--gold); }
+button.primary:hover { background: var(--gold); color: #000; }
+button.air { border-color: var(--air); color: var(--air); }
+button.air:hover { background: var(--air); color: #000; }
+button.aiv { border-color: var(--aiv); color: var(--aiv); }
+button.aiv:hover { background: var(--aiv); color: #000; }
+button.team { border-color: var(--team); color: var(--team); }
+button.team:hover { background: var(--team); color: #000; }
+button.danger { border-color: #f44; color: #f44; }
+button.danger:hover { background: #f44; color: #000; }
 
 @media (max-width: 800px) {
     main { grid-template-columns: 1fr; }
-    #panel { max-height: 200px; }
-    #responses { grid-template-columns: 1fr 1fr 1fr; }
+    #panel { max-height: 180px; }
 }
 </style>
 </head>
@@ -226,154 +174,96 @@ footer .c { color: var(--gold); }
 
 <header>
     <h1>
-        <span class="u4">✦ 4u</span>
-        <span style="color:#333;">·</span>
-        <span class="layer">RESPONSE</span>
-        <span style="color:#333;">·</span>
-        <span class="iki">LAYER 7</span>
-        <span style="color:#333;">·</span>
-        <span style="color:var(--fg);font-weight:300;">iki1uc</span>
+        <span class="all">✦ ALL</span>
+        <span class="x">×</span>
+        <span class="all">ALL</span>
+        <span style="color:#666;">·</span>
+        <span class="team">4D-TEAM</span>
+        <span style="color:#666;">·</span>
+        <span style="color:var(--gold);">CAUSE</span>
     </h1>
     <div id="info-bar">
         <span id="clock">⏱️ --:--:--</span>
-        <span id="state-display" style="color:#666;">● bereit</span>
+        <span id="state-display" style="color:var(--gold);">● bereit</span>
+        <span id="cycle-display" style="color:#666;">360° 0</span>
     </div>
 </header>
 
 <main>
     <div id="canvas-wrap">
-        <canvas id="layerCanvas"></canvas>
+        <canvas id="gameCanvas"></canvas>
         <div id="canvas-overlay">
-            <span class="ok">●</span> 4u · Response Layer 7 · ID: 4u
+            <span class="air">●</span> AIR · <span class="aiv">●</span> AIV · 8er-Bewegung
         </div>
     </div>
 
     <div id="panel">
-        <div id="id-block">
-            <div class="label">ID · 4u</div>
-            <div class="value">OK / NOK / FLOW / BREAK / ECHO / VOID / ROOT</div>
-        </div>
+        <h3>🎮 4D-TEAM · ALLXALL</h3>
 
-        <h3>✦ 7 RESPONSES</h3>
-
-        <div id="responses">
-            <div class="response active" data-resp="OK">
-                <span class="sym">✅</span>
-                <span class="label">OK</span>
-                <span class="desc">Zustimmung</span>
-            </div>
-            <div class="response" data-resp="NOK">
-                <span class="sym">❌</span>
-                <span class="label">NOK</span>
-                <span class="desc">Ablehnung</span>
-            </div>
-            <div class="response" data-resp="FLOW">
-                <span class="sym">🌊</span>
-                <span class="label">FLOW</span>
-                <span class="desc">System fließt</span>
-            </div>
-            <div class="response" data-resp="BREAK">
-                <span class="sym">💥</span>
-                <span class="label">BREAK</span>
-                <span class="desc">System bricht</span>
-            </div>
-            <div class="response" data-resp="ECHO">
-                <span class="sym">🔄</span>
-                <span class="label">ECHO</span>
-                <span class="desc">Spiegelung</span>
-            </div>
-            <div class="response" data-resp="VOID">
-                <span class="sym">◌</span>
-                <span class="label">VOID</span>
-                <span class="desc">Neutral</span>
-            </div>
-            <div class="response" data-resp="ROOT" style="grid-column: span 3;">
-                <span class="sym">🌳</span>
-                <span class="label">ROOT</span>
-                <span class="desc">Rückkehr zum Ursprung</span>
-            </div>
-        </div>
-
-        <div id="metriques">
-            <div class="metrique">
-                <div class="label">RESPONSE</div>
-                <div class="value" id="resp-value" style="color:var(--ok);">✅ OK</div>
-            </div>
-            <div class="metrique">
-                <div class="label">ZUSTAND</div>
-                <div class="value" id="state-value" style="color:var(--ok);">Zustimmung</div>
-            </div>
-            <div class="metrique">
-                <div class="label">φ</div>
-                <div class="value" id="phi-value" style="color:var(--flow);">0.00</div>
-            </div>
+        <div id="metrics">
+            <div class="metric air"><div class="label">AIR</div><div class="value" id="air-value">0</div></div>
+            <div class="metric aiv"><div class="label">AIV</div><div class="value" id="aiv-value">0</div></div>
+            <div class="metric team"><div class="label">TEAM</div><div class="value" id="team-value">0</div></div>
+            <div class="metric cause"><div class="label">CAUSE</div><div class="value" id="cause-value">3</div></div>
         </div>
 
         <div id="log">
-            <div class="entry"><span class="time">[init]</span> <span class="msg ok">✦ 4u · Response Layer 7 · ID: 4u</span></div>
-            <div class="entry"><span class="time">[init]</span> <span class="msg flow">OK · NOK · FLOW · BREAK · ECHO · VOID · ROOT</span></div>
-            <div class="entry"><span class="time">[init]</span> <span class="msg ok">✅ System bereit · Wähle eine Response</span></div>
+            <div class="entry"><span class="time">[INIT]</span> <span class="msg all">✦ ALLXALL · 4D-TEAM · CAUSE</span></div>
+            <div class="entry"><span class="time">[INIT]</span> <span class="msg team">8er-Bewegung · 360° · AIR/AIV</span></div>
         </div>
 
         <div id="controls">
-            <button class="primary" id="btn-ok">✅ OK</button>
-            <button class="danger" id="btn-nok">❌ NOK</button>
-            <button class="flow" id="btn-flow">🌊 FLOW</button>
-            <button id="btn-root">🌳 ROOT</button>
+            <button class="primary" id="btn-start">▶ START</button>
+            <button class="air" id="btn-air">🌀 AIR</button>
+            <button class="aiv" id="btn-aiv">⚡ AIV</button>
+            <button class="team" id="btn-team">🤝 TEAM</button>
+            <button class="danger" id="btn-reset">⟲ RESET</button>
             <button id="btn-auto">▶ AUTO</button>
         </div>
     </div>
 </main>
 
-<footer>
-    <span class="c">✦</span> 4u · Response Layer 7 · © iki1uc wieimmer <span class="c">✦</span>
-</footer>
-
 <script>
 // ============================================================
-// 1. 4u · RESPONSE LAYER 7 — ALLES IN EINER DATEI
+// 1. ALLXALL · 4D-TEAM · CAUSE
 // ============================================================
 
-// --- RESPONSES (statt 4u.js) ---
-const RESPONSES = {
-    OK:    { sym: '✅', label: 'OK',    desc: 'Zustimmung',   color: '#4f4', class: 'ok' },
-    NOK:   { sym: '❌', label: 'NOK',   desc: 'Ablehnung',    color: '#f44', class: 'nok' },
-    FLOW:  { sym: '🌊', label: 'FLOW',  desc: 'System fließt', color: '#4ff', class: 'flow' },
-    BREAK: { sym: '💥', label: 'BREAK', desc: 'System bricht', color: '#f4f', class: 'break' },
-    ECHO:  { sym: '🔄', label: 'ECHO',  desc: 'Spiegelung',   color: '#ff4', class: 'echo' },
-    VOID:  { sym: '◌',  label: 'VOID',  desc: 'Neutral',      color: '#666', class: 'void' },
-    ROOT:  { sym: '🌳', label: 'ROOT',  desc: 'Rückkehr',     color: '#ffd700', class: 'root' }
+// --- KONSTANTEN ---
+const PHI = 1.61803398875;
+const DEG_360 = Math.PI * 2;
+const DEG_45 = Math.PI / 4;
+
+// --- 8er-Bewegung (8 Richtungen) ---
+const DIR8 = [
+    { dx: 1, dy: 0, label: 'O' },    // 0°
+    { dx: 1, dy: 1, label: 'SO' },   // 45°
+    { dx: 0, dy: 1, label: 'S' },    // 90°
+    { dx: -1, dy: 1, label: 'SW' },  // 135°
+    { dx: -1, dy: 0, label: 'W' },   // 180°
+    { dx: -1, dy: -1, label: 'NW' }, // 225°
+    { dx: 0, dy: -1, label: 'N' },   // 270°
+    { dx: 1, dy: -1, label: 'NO' }   // 315°
+];
+
+// --- CAUSE-SYSTEM (3-6-9-0-3) ---
+const CAUSE_CYCLE = [
+    { level: 3, label: 'DA · Start', color: '#4f4' },
+    { level: 6, label: 'NE · Mitte', color: '#4ff' },
+    { level: 9, label: 'BEN · Vollendung', color: '#ff4' },
+    { level: 0, label: 'KI · Kern', color: '#f4f' },
+    { level: 3, label: 'DA · Neustart', color: '#4f4' }
+];
+
+// --- AIR/AIV-Cache ---
+const CACHE = {
+    AIR: { x4: 0, ix: 0, xi: 0 },
+    AIV: { x4: 0, ix: 0, xi: 0 }
 };
-
-const RESPONSE_KEYS = ['OK', 'NOK', 'FLOW', 'BREAK', 'ECHO', 'VOID', 'ROOT'];
-
-// --- SYN (statt syn.js) ---
-function syn(x) {
-    return { syn: x * 3, mode: 'SYN' };
-}
-
-// --- QUANT (statt quant.js) ---
-function quant(x) {
-    return { quant: x * 9, mode: 'QUANT' };
-}
-
-// --- RESPO (statt respo.js) ---
-function computeRespo(synVal, quantVal) {
-    return Math.min(1, Math.max(0, (synVal + quantVal) / 1.61803398875));
-}
-
-// --- ROUTER (statt router.js) ---
-function router(synVal, quantVal) {
-    const R = (synVal + quantVal) / 1.61803398875;
-    if (R > 0.66) return 'OK';
-    if (R < 0.33) return 'NOK';
-    return 'FLOW';
-}
 
 // ============================================================
 // 2. CANVAS SETUP
 // ============================================================
-const canvas = document.getElementById('layerCanvas');
+const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 let W, H, cx, cy, radius;
 
@@ -390,19 +280,45 @@ resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
 // ============================================================
-// 3. STATE
+// 3. STATE — 4D-TEAM
 // ============================================================
 const state = {
     running: false,
+    paused: false,
     autoMode: false,
     cycle: 0,
     t: 0,
-    active: 'OK',
-    response: RESPONSES.OK,
-    syn: 0.5,
-    quant: 0.5,
-    respo: 0.5,
-    phi: 0.5
+
+    // 8er-Bewegung
+    direction: 0,
+    pos: { x: 0, y: 0 },
+    angle: 0,
+
+    // CAUSE
+    causeLevel: 3,
+    causeIndex: 0,
+
+    // AIR/AIV
+    air: 0,
+    aiv: 0,
+    team: 0,
+
+    // X4/IX/XI Cache
+    cache: CACHE,
+
+    // Spieler (Team)
+    players: [
+        { name: 'PX', color: '#ff6b6b', pos: { x: -60, y: -60 } },
+        { name: 'PC', color: '#6bff6b', pos: { x: 60, y: -60 } },
+        { name: 'GHOST', color: '#6b6bff', pos: { x: 0, y: 60 } }
+    ],
+
+    // ALLXALL
+    allxall: {
+        active: true,
+        sync: 0,
+        harmony: 0
+    }
 };
 
 // ============================================================
@@ -413,10 +329,8 @@ function log(msg, type = 'info') {
     const entry = document.createElement('div');
     entry.className = 'entry';
     const time = new Date().toLocaleTimeString();
-    const cls = type === 'ok' ? 'ok' : type === 'nok' ? 'nok' :
-                type === 'flow' ? 'flow' : type === 'break' ? 'break' :
-                type === 'echo' ? 'echo' : type === 'void' ? 'void' :
-                type === 'root' ? 'root' : '';
+    const cls = type === 'all' ? 'all' : type === 'team' ? 'team' :
+                type === 'cause' ? 'cause' : type === 'aiv' ? 'aiv' : '';
     entry.innerHTML = `<span class="time">[${time}]</span> <span class="msg ${cls}">${msg}</span>`;
     logDiv.appendChild(entry);
     logDiv.scrollTop = logDiv.scrollHeight;
@@ -424,58 +338,120 @@ function log(msg, type = 'info') {
 }
 
 // ============================================================
-// 5. SET RESPONSE
+// 5. 4D-TEAM · KERN
 // ============================================================
-function setResponse(key) {
-    const resp = RESPONSES[key] || RESPONSES.OK;
-    state.active = key;
-    state.response = resp;
 
-    // UI
-    document.querySelectorAll('.response').forEach(el => {
-        el.classList.toggle('active', el.dataset.resp === key);
-    });
+// --- CAUSE-Update ---
+function updateCause() {
+    const cycle = CAUSE_CYCLE[state.causeIndex];
+    state.causeLevel = cycle.level;
+    log(`⚡ CAUSE: ${cycle.label} (${cycle.level})`, 'cause');
+    document.getElementById('cause-value').textContent = state.causeLevel;
 
-    document.getElementById('resp-value').textContent = `${resp.sym} ${resp.label}`;
-    document.getElementById('resp-value').style.color = resp.color;
-    document.getElementById('state-value').textContent = resp.desc;
-    document.getElementById('state-value').style.color = resp.color;
+    // Nächster Index
+    state.causeIndex = (state.causeIndex + 1) % CAUSE_CYCLE.length;
+}
 
-    log(`${resp.sym} ${resp.label} · ${resp.desc}`, resp.class);
+// --- 8er-Bewegung ---
+function move8() {
+    const dir = DIR8[state.direction];
+    state.pos.x += dir.dx * 8;
+    state.pos.y += dir.dy * 8;
+    state.angle = (state.direction / 8) * DEG_360;
 
-    // RESPO berechnen
-    state.respo = computeRespo(state.syn, state.quant);
-    state.phi = state.respo;
-    document.getElementById('phi-value').textContent = state.phi.toFixed(3);
+    // Grenzen
+    const limit = radius * 0.6;
+    if (Math.abs(state.pos.x) > limit) state.pos.x = -state.pos.x * 0.9;
+    if (Math.abs(state.pos.y) > limit) state.pos.y = -state.pos.y * 0.9;
 
-    document.querySelector('#canvas-overlay .ok').textContent = resp.sym;
+    state.direction = (state.direction + 1) % 8;
+}
+
+// --- AIR/AIV-Update ---
+function updateAirAiv() {
+    // AIR = Resonanz (SYN)
+    state.air = 0.3 + 0.7 * (0.5 + 0.5 * Math.sin(state.t * 0.3));
+    // AIV = Sprung (QUANT)
+    state.aiv = 0.3 + 0.7 * (0.5 + 0.5 * Math.cos(state.t * 0.25));
+    // TEAM = (AIR + AIV) / φ
+    state.team = (state.air + state.aiv) / PHI;
+
+    // Cache updaten
+    state.cache.AIR.x4 = state.air * 4;
+    state.cache.AIR.ix = state.air * 9;
+    state.cache.AIR.xi = state.air * 81;
+    state.cache.AIV.x4 = state.aiv * 4;
+    state.cache.AIV.ix = state.aiv * 9;
+    state.cache.AIV.xi = state.aiv * 81;
+
+    // Metriken
+    document.getElementById('air-value').textContent = (state.air * 100).toFixed(0) + '%';
+    document.getElementById('aiv-value').textContent = (state.aiv * 100).toFixed(0) + '%';
+    document.getElementById('team-value').textContent = (state.team * 100).toFixed(0) + '%';
+}
+
+// --- ALLXALL-Sync ---
+function syncAllxall() {
+    state.allxall.sync = 1 - Math.abs(state.air - state.aiv);
+    state.allxall.harmony = (state.air + state.aiv + state.team) / 3;
+}
+
+// --- WHIRL-START (CAUSE) ---
+function WHIRL_START(pool) {
+    pool.causeLevel = 3;
+    return {
+        status: 'WHIRL läuft im CAUSE-Modus (3)',
+        cause: pool.causeLevel,
+        allxall: state.allxall,
+        team: state.players
+    };
 }
 
 // ============================================================
-// 6. RENDER
+// 6. RENDER — 4D-TEAM
 // ============================================================
 function render() {
+    if (state.paused) {
+        requestAnimationFrame(render);
+        return;
+    }
+
     ctx.clearRect(0, 0, W, H);
 
+    // Hintergrund
     const grad = ctx.createRadialGradient(cx, cy, 10, cx, cy, W * 0.6);
     grad.addColorStop(0, '#0a0a1a');
     grad.addColorStop(1, '#000');
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, W, H);
 
-    drawResponsesRing();
-    drawActiveResponse();
-    drawRespo();
-    drawSynQuant();
+    // 1. 360°-Ring (8er-Bewegung)
+    draw360Ring();
 
+    // 2. Spieler (Team)
+    drawPlayers();
+
+    // 3. AIR/AIV-Punkte
+    drawAirAiv();
+
+    // 4. CAUSE-Kern
+    drawCause();
+
+    // 5. ALLXALL-Netz
+    drawAllxall();
+
+    // Update
     state.t += 0.008;
     if (state.running) {
         state.cycle++;
-        state.syn = 0.5 + 0.4 * Math.sin(state.t * 0.3);
-        state.quant = 0.5 + 0.4 * Math.cos(state.t * 0.25);
-        state.respo = computeRespo(state.syn, state.quant);
-        state.phi = state.respo;
-        document.getElementById('phi-value').textContent = state.phi.toFixed(3);
+        updateAirAiv();
+        syncAllxall();
+        if (state.cycle % 20 === 0) move8();
+        if (state.cycle % 60 === 0) updateCause();
+    }
+
+    if (state.cycle % 15 === 0) {
+        document.getElementById('cycle-display').textContent = `360° ${state.cycle}`;
     }
 
     requestAnimationFrame(render);
@@ -486,224 +462,317 @@ render();
 // 7. ZEICHEN-FUNKTIONEN
 // ============================================================
 
-function drawResponsesRing() {
-    const n = RESPONSE_KEYS.length;
+function draw360Ring() {
     const r = radius * 0.6;
+    const n = 8;
 
+    // 360°-Ring
+    ctx.strokeStyle = 'rgba(255,215,61,0.05)';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([2, 4]);
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, DEG_360);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // 8 Richtungen
     for (let i = 0; i < n; i++) {
-        const key = RESPONSE_KEYS[i];
-        const resp = RESPONSES[key];
-        const angle = (i / n) * Math.PI * 2 + state.t * 0.02;
-        const dist = r * 0.85;
-        const x = cx + Math.cos(angle) * dist;
-        const y = cy + Math.sin(angle) * dist;
+        const angle = (i / n) * DEG_360 + state.t * 0.02;
+        const x = cx + Math.cos(angle) * r;
+        const y = cy + Math.sin(angle) * r;
 
-        const isActive = key === state.active;
-
-        ctx.fillStyle = isActive ? `rgba(255,215,61,0.15)` : `rgba(255,255,255,0.02)`;
+        const isActive = i === state.direction;
+        ctx.fillStyle = isActive ? 'rgba(255,215,61,0.2)' : 'rgba(255,255,255,0.02)';
         ctx.shadowColor = isActive ? '#ffd700' : 'transparent';
-        ctx.shadowBlur = isActive ? 20 : 0;
+        ctx.shadowBlur = isActive ? 15 : 0;
         ctx.beginPath();
-        ctx.arc(x, y, isActive ? 12 : 5, 0, Math.PI * 2);
+        ctx.arc(x, y, isActive ? 8 : 3, 0, Math.PI * 2);
         ctx.fill();
         ctx.shadowBlur = 0;
 
         ctx.fillStyle = isActive ? '#ffd700' : '#333';
-        ctx.font = isActive ? '14px Consolas' : '10px Consolas';
+        ctx.font = isActive ? '7px Consolas' : '5px Consolas';
         ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(resp.sym, x, y - 16);
-
-        ctx.fillStyle = isActive ? '#ffd700' : '#333';
-        ctx.font = isActive ? '6px Consolas' : '5px Consolas';
-        ctx.fillText(resp.label, x, y + 18);
-
-        if (isActive) {
-            ctx.strokeStyle = 'rgba(255,215,61,0.05)';
-            ctx.lineWidth = 0.5;
-            ctx.setLineDash([2, 4]);
-            ctx.beginPath();
-            ctx.moveTo(cx, cy);
-            ctx.lineTo(x, y);
-            ctx.stroke();
-            ctx.setLineDash([]);
-        }
+        ctx.textBaseline = 'bottom';
+        ctx.fillText(DIR8[i].label, x, y - 10);
     }
+
+    // 360° Label
+    ctx.fillStyle = 'rgba(255,215,61,0.05)';
+    ctx.font = '8px Consolas';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    ctx.fillText('360°', cx, cy + r + 10);
 }
 
-function drawActiveResponse() {
-    const resp = state.response;
-    const r = radius * 0.25;
+function drawPlayers() {
+    const players = state.players;
+    const scale = 1 + state.team * 0.3;
 
+    players.forEach((p, i) => {
+        const angle = (i / players.length) * DEG_360 + state.t * 0.05;
+        const dist = radius * 0.25 * scale;
+        const x = cx + Math.cos(angle) * dist + state.pos.x * 0.3;
+        const y = cy + Math.sin(angle) * dist + state.pos.y * 0.3;
+
+        // Glow
+        const glow = ctx.createRadialGradient(x, y, 0, x, y, 20);
+        glow.addColorStop(0, `${p.color}44`);
+        glow.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.fillStyle = glow;
+        ctx.beginPath();
+        ctx.arc(x, y, 20, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Spieler
+        ctx.fillStyle = p.color;
+        ctx.shadowColor = p.color;
+        ctx.shadowBlur = 15;
+        ctx.beginPath();
+        ctx.arc(x, y, 8 + state.team * 4, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+
+        // Name
+        ctx.fillStyle = '#666';
+        ctx.font = '6px Consolas';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'bottom';
+        ctx.fillText(p.name, x, y - 14);
+    });
+
+    // Team-Label
+    ctx.fillStyle = `rgba(68,255,68,${0.1 + state.team * 0.2})`;
+    ctx.font = '6px Consolas';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    ctx.fillText(`🤝 TEAM ${(state.team * 100).toFixed(0)}%`, cx, cy + radius * 0.55);
+}
+
+function drawAirAiv() {
+    const air = state.air;
+    const aiv = state.aiv;
+    const r = radius * 0.35;
+
+    // AIR (links)
+    const ax = cx - r * 0.8;
+    const ay = cy - r * 0.3;
+    ctx.fillStyle = `rgba(68,255,255,${0.1 + air * 0.3})`;
+    ctx.shadowColor = '#4ff';
+    ctx.shadowBlur = 5 + air * 15;
+    ctx.beginPath();
+    ctx.arc(ax, ay, 3 + air * 10, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.shadowBlur = 0;
+    ctx.fillStyle = `rgba(68,255,255,${0.3 + air * 0.3})`;
+    ctx.font = '5px Consolas';
+    ctx.textAlign = 'center';
+    ctx.fillText(`AIR ${(air * 100).toFixed(0)}%`, ax, ay - 16);
+
+    // AIV (rechts)
+    const avx = cx + r * 0.8;
+    const avy = cy - r * 0.3;
+    ctx.fillStyle = `rgba(255,68,255,${0.1 + aiv * 0.3})`;
+    ctx.shadowColor = '#f4f';
+    ctx.shadowBlur = 5 + aiv * 15;
+    ctx.beginPath();
+    ctx.arc(avx, avy, 3 + aiv * 10, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.shadowBlur = 0;
+    ctx.fillStyle = `rgba(255,68,255,${0.3 + aiv * 0.3})`;
+    ctx.fillText(`AIV ${(aiv * 100).toFixed(0)}%`, avx, avy - 16);
+
+    // Verbindung
+    ctx.strokeStyle = `rgba(255,215,61,${0.05 + state.team * 0.1})`;
+    ctx.lineWidth = 0.5 + state.team * 1;
+    ctx.setLineDash([2, 4]);
+    ctx.beginPath();
+    ctx.moveTo(ax, ay);
+    ctx.lineTo(avx, avy);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Cache-Werte
+    ctx.fillStyle = 'rgba(255,255,255,0.03)';
+    ctx.font = '4px Consolas';
+    ctx.textAlign = 'center';
+    ctx.fillText(`X4:${(state.cache.AIR.x4).toFixed(0)} IX:${(state.cache.AIR.ix).toFixed(0)} XI:${(state.cache.AIR.xi).toFixed(0)}`, ax, ay + 18);
+    ctx.fillText(`X4:${(state.cache.AIV.x4).toFixed(0)} IX:${(state.cache.AIV.ix).toFixed(0)} XI:${(state.cache.AIV.xi).toFixed(0)}`, avx, avy + 18);
+}
+
+function drawCause() {
+    const level = state.causeLevel;
+    const idx = state.causeIndex;
+    const cycle = CAUSE_CYCLE[idx] || CAUSE_CYCLE[0];
+
+    const r = radius * 0.08 + level * 3;
+    const color = cycle.color;
+
+    // Glow
     const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, r + 20);
-    glow.addColorStop(0, `${resp.color}15`);
+    glow.addColorStop(0, `${color}33`);
     glow.addColorStop(1, 'rgba(0,0,0,0)');
     ctx.fillStyle = glow;
     ctx.beginPath();
     ctx.arc(cx, cy, r + 20, 0, Math.PI * 2);
     ctx.fill();
 
-    ctx.fillStyle = resp.color;
-    ctx.shadowColor = resp.color;
-    ctx.shadowBlur = 30;
-    ctx.font = '42px Consolas';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(resp.sym, cx, cy - 4);
-    ctx.shadowBlur = 0;
-
-    ctx.fillStyle = '#666';
-    ctx.font = '8px Consolas';
-    ctx.textBaseline = 'top';
-    ctx.fillText(resp.label, cx, cy + 30);
-
-    ctx.fillStyle = '#444';
-    ctx.font = '6px Consolas';
-    ctx.textBaseline = 'top';
-    ctx.fillText(resp.desc, cx, cy + 42);
-}
-
-function drawRespo() {
-    const val = state.respo;
-    const coreRadius = 3 + val * 6;
-
-    const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, coreRadius + 6);
-    glow.addColorStop(0, `rgba(108, 204, 255, ${0.1 + val * 0.15})`);
-    glow.addColorStop(1, 'rgba(108, 204, 255, 0)');
-    ctx.fillStyle = glow;
+    // Kern
+    ctx.fillStyle = color;
+    ctx.shadowColor = color;
+    ctx.shadowBlur = 20;
     ctx.beginPath();
-    ctx.arc(cx, cy, coreRadius + 6, 0, Math.PI * 2);
-    ctx.fill();
-
-    const coreGrad = ctx.createRadialGradient(cx - 2, cy - 2, 0, cx, cy, coreRadius);
-    coreGrad.addColorStop(0, `rgba(108, 204, 255, ${0.3 + val * 0.3})`);
-    coreGrad.addColorStop(0.7, `rgba(60, 180, 220, ${0.15 + val * 0.2})`);
-    coreGrad.addColorStop(1, `rgba(40, 120, 180, ${0.08 + val * 0.15})`);
-    ctx.fillStyle = coreGrad;
-    ctx.shadowColor = '#6cf';
-    ctx.shadowBlur = 4 + val * 6;
-    ctx.beginPath();
-    ctx.arc(cx, cy, coreRadius, 0, Math.PI * 2);
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
     ctx.fill();
     ctx.shadowBlur = 0;
 
+    // Level
     ctx.fillStyle = '#000';
-    ctx.font = `bold ${3 + val * 3}px Consolas`;
+    ctx.font = `bold ${6 + level}px Consolas`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('4u', cx, cy);
+    ctx.fillText(level, cx, cy + 1);
+
+    // Label
+    ctx.fillStyle = `rgba(255,255,255,${0.05 + level * 0.02})`;
+    ctx.font = '5px Consolas';
+    ctx.textBaseline = 'top';
+    ctx.fillText(cycle.label, cx, cy + r + 8);
+
+    // WHIRL-Status
+    ctx.fillStyle = 'rgba(255,215,61,0.05)';
+    ctx.font = '4px Consolas';
+    ctx.textBaseline = 'bottom';
+    ctx.fillText('WHIRL · CAUSE', cx, cy - r - 8);
 }
 
-function drawSynQuant() {
-    const syn = state.syn;
-    const quant = state.quant;
-    const r = radius * 0.05;
+function drawAllxall() {
+    const sync = state.allxall.sync;
+    const harmony = state.allxall.harmony;
 
-    const sx = cx - r * 0.6;
-    const sy = cy + r * 0.15;
-    ctx.fillStyle = `rgba(255, 107, 107, ${0.1 + syn * 0.15})`;
-    ctx.shadowColor = '#ff6b6b';
-    ctx.shadowBlur = 2 + syn * 3;
-    ctx.beginPath();
-    ctx.arc(sx, sy, 1 + syn * 2, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.shadowBlur = 0;
-    ctx.fillStyle = `rgba(255, 107, 107, ${0.1 + syn * 0.15})`;
-    ctx.font = '3px Consolas';
+    // ALLXALL-Netz
+    const r = radius * 0.5;
+    for (let i = 0; i < 6; i++) {
+        const angle = (i / 6) * DEG_360 + state.t * 0.01;
+        const x = cx + Math.cos(angle) * r * (0.3 + harmony * 0.5);
+        const y = cy + Math.sin(angle) * r * (0.3 + harmony * 0.5);
+
+        ctx.fillStyle = `rgba(255,215,61,${0.02 + sync * 0.05})`;
+        ctx.beginPath();
+        ctx.arc(x, y, 1 + sync * 2, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Verbindungen
+        for (let j = i + 1; j < 6; j++) {
+            const angle2 = (j / 6) * DEG_360 + state.t * 0.01;
+            const x2 = cx + Math.cos(angle2) * r * (0.3 + harmony * 0.5);
+            const y2 = cy + Math.sin(angle2) * r * (0.3 + harmony * 0.5);
+
+            ctx.strokeStyle = `rgba(255,215,61,${0.01 + sync * 0.03})`;
+            ctx.lineWidth = 0.3 + sync * 0.5;
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.lineTo(x2, y2);
+            ctx.stroke();
+        }
+    }
+
+    // ALLXALL Label
+    ctx.fillStyle = `rgba(255,215,61,${0.05 + harmony * 0.1})`;
+    ctx.font = '5px Consolas';
     ctx.textAlign = 'center';
-    ctx.fillText(`SYN ${(syn * 100).toFixed(0)}%`, sx, sy - 5);
-
-    const qx = cx + r * 0.6;
-    const qy = cy + r * 0.15;
-    ctx.fillStyle = `rgba(107, 107, 255, ${0.1 + quant * 0.15})`;
-    ctx.shadowColor = '#6b6bff';
-    ctx.shadowBlur = 2 + quant * 3;
-    ctx.beginPath();
-    ctx.arc(qx, qy, 1 + quant * 2, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.shadowBlur = 0;
-    ctx.fillStyle = `rgba(107, 107, 255, ${0.1 + quant * 0.15})`;
-    ctx.fillText(`QUANT ${(quant * 100).toFixed(0)}%`, qx, qy - 5);
+    ctx.textBaseline = 'bottom';
+    ctx.fillText(`ALL×ALL · ${(sync * 100).toFixed(0)}% sync`, cx, cy - r * 0.7);
 }
 
 // ============================================================
 // 8. CONTROLS
 // ============================================================
-document.getElementById('btn-ok').onclick = function() {
-    setResponse('OK');
-    document.getElementById('state-display').textContent = '● OK';
-    document.getElementById('state-display').style.color = '#4f4';
-};
+document.getElementById('btn-start').addEventListener('click', function() {
+    state.running = !state.running;
+    this.textContent = state.running ? '⏸ STOP' : '▶ START';
+    document.getElementById('state-display').textContent = state.running ? '● läuft' : '● gestoppt';
+    document.getElementById('state-display').style.color = state.running ? 'var(--gold)' : '#666';
+    log(state.running ? '▶ 4D-TEAM gestartet' : '⏸ 4D-TEAM gestoppt', 'team');
+});
 
-document.getElementById('btn-nok').onclick = function() {
-    setResponse('NOK');
-    document.getElementById('state-display').textContent = '● NOK';
+document.getElementById('btn-air').addEventListener('click', function() {
+    state.air = Math.min(1, state.air + 0.1);
+    log(`🌀 AIR auf ${(state.air * 100).toFixed(0)}%`, 'all');
+});
+
+document.getElementById('btn-aiv').addEventListener('click', function() {
+    state.aiv = Math.min(1, state.aiv + 0.1);
+    log(`⚡ AIV auf ${(state.aiv * 100).toFixed(0)}%`, 'aiv');
+});
+
+document.getElementById('btn-team').addEventListener('click', function() {
+    state.team = (state.air + state.aiv) / PHI;
+    log(`🤝 TEAM = ${(state.team * 100).toFixed(0)}%`, 'team');
+});
+
+document.getElementById('btn-reset').addEventListener('click', function() {
+    state.running = false;
+    state.paused = false;
+    state.cycle = 0;
+    state.t = 0;
+    state.air = 0;
+    state.aiv = 0;
+    state.team = 0;
+    state.causeIndex = 0;
+    state.causeLevel = 3;
+    state.direction = 0;
+    state.pos = { x: 0, y: 0 };
+    state.allxall = { active: true, sync: 0, harmony: 0 };
+    document.getElementById('btn-start').textContent = '▶ START';
+    document.getElementById('state-display').textContent = '● reset';
     document.getElementById('state-display').style.color = '#f44';
-};
+    document.getElementById('cycle-display').textContent = '360° 0';
+    document.getElementById('air-value').textContent = '0%';
+    document.getElementById('aiv-value').textContent = '0%';
+    document.getElementById('team-value').textContent = '0%';
+    document.getElementById('cause-value').textContent = '3';
+    log('⟲ RESET — 4D-TEAM zurückgesetzt', 'team');
+});
 
-document.getElementById('btn-flow').onclick = function() {
-    setResponse('FLOW');
-    document.getElementById('state-display').textContent = '● FLOW';
-    document.getElementById('state-display').style.color = '#4ff';
-};
-
-document.getElementById('btn-root').onclick = function() {
-    setResponse('ROOT');
-    document.getElementById('state-display').textContent = '● ROOT';
-    document.getElementById('state-display').style.color = '#ffd700';
-};
-
-document.getElementById('btn-auto').onclick = function() {
+document.getElementById('btn-auto').addEventListener('click', function() {
     state.autoMode = !state.autoMode;
     this.textContent = state.autoMode ? '⏸ PAUSE' : '▶ AUTO';
     if (state.autoMode) {
+        log('▶ AUTO · 4D-TEAM atmet', 'team');
         state.running = true;
-        log('▶ AUTO · 4u wandert', 'flow');
+        document.getElementById('btn-start').textContent = '⏸ STOP';
+        document.getElementById('state-display').textContent = '● auto';
+        document.getElementById('state-display').style.color = 'var(--gold)';
         if (window.autoInterval) clearInterval(window.autoInterval);
         window.autoInterval = setInterval(function() {
-            const idx = Math.floor(Math.random() * RESPONSE_KEYS.length);
-            const key = RESPONSE_KEYS[idx];
-            setResponse(key);
-            document.getElementById('state-display').textContent = `● ${key}`;
-            const colors = { OK:'#4f4', NOK:'#f44', FLOW:'#4ff', BREAK:'#f4f', ECHO:'#ff4', VOID:'#666', ROOT:'#ffd700' };
-            document.getElementById('state-display').style.color = colors[key] || '#666';
-            log(`🔄 ${RESPONSES[key].sym} ${key}`, RESPONSES[key].class);
-        }, 2500);
+            state.cycle++;
+            document.getElementById('cycle-display').textContent = `360° ${state.cycle}`;
+            const teamPct = (state.team * 100).toFixed(0);
+            log(`🔄 Zyklus ${state.cycle}: TEAM=${teamPct}% · CAUSE=${state.causeLevel}`, 'team');
+        }, 3000);
     } else {
         clearInterval(window.autoInterval);
-        log('⏸ AUTO · Pause', 'void');
+        log('⏸ AUTO pausiert', 'team');
+        document.getElementById('state-display').textContent = '● pausiert';
+        document.getElementById('state-display').style.color = '#ff4';
     }
-};
-
-// ============================================================
-// 9. RESPONSE-KLICKS
-// ============================================================
-document.querySelectorAll('.response').forEach(function(el) {
-    el.onclick = function() {
-        const key = this.dataset.resp;
-        setResponse(key);
-        document.getElementById('state-display').textContent = `● ${key}`;
-        const colors = { OK:'#4f4', NOK:'#f44', FLOW:'#4ff', BREAK:'#f4f', ECHO:'#ff4', VOID:'#666', ROOT:'#ffd700' };
-        document.getElementById('state-display').style.color = colors[key] || '#666';
-    };
 });
 
 // ============================================================
-// 10. TASTATUR
+// 9. TASTATUR
 // ============================================================
 document.addEventListener('keydown', function(e) {
-    if (e.key === '1') setResponse('OK');
-    if (e.key === '2') setResponse('NOK');
-    if (e.key === '3') setResponse('FLOW');
-    if (e.key === '4') setResponse('BREAK');
-    if (e.key === '5') setResponse('ECHO');
-    if (e.key === '6') setResponse('VOID');
-    if (e.key === '7') setResponse('ROOT');
-    if (e.key === ' ') { e.preventDefault(); document.getElementById('btn-auto').click(); }
+    if (e.key === ' ') { e.preventDefault(); document.getElementById('btn-start').click(); }
+    if (e.key === 'a' || e.key === 'A') document.getElementById('btn-air').click();
+    if (e.key === 'v' || e.key === 'V') document.getElementById('btn-aiv').click();
+    if (e.key === 't' || e.key === 'T') document.getElementById('btn-team').click();
+    if (e.key === 'x' || e.key === 'X') document.getElementById('btn-reset').click();
+    if (e.key === 'z' || e.key === 'Z') document.getElementById('btn-auto').click();
 });
 
 // ============================================================
-// 11. UHR
+// 10. UHR
 // ============================================================
 function updateClock() {
     document.getElementById('clock').textContent = '⏱️ ' + new Date().toLocaleTimeString();
@@ -712,20 +781,23 @@ setInterval(updateClock, 1000);
 updateClock();
 
 // ============================================================
-// 12. INIT
-// ============================================================
-log('✦ 4u · Response Layer 7 · ID: 4u', 'ok');
-log('OK · NOK · FLOW · BREAK · ECHO · VOID · ROOT', 'flow');
-log('⌨️  1=OK 2=NOK 3=FLOW 4=BREAK 5=ECHO 6=VOID 7=ROOT  space=Auto', 'echo');
+// 11. INIT// ============================================================
+log('✦ ALLXALL · 4D-TEAM · CAUSE', 'all');
+log('8er-Bewegung · 360° · AIR/AIV · X4/IX/XI', 'team');
+log('⌨️  space=Start  a=AIR  v=AIV  t=TEAM  x=Reset  z=Auto', 'team');
 
-console.log('✦ 4u · Response Layer 7 · ID: 4u');
-console.log('OK · NOK · FLOW · BREAK · ECHO · VOID · ROOT');
-console.log('⌨️  1=OK 2=NOK 3=FLOW 4=BREAK 5=ECHO 6=VOID 7=ROOT  space=Auto');
+console.log('✦ ALLXALL · 4D-TEAM · CAUSE');
+console.log('8er-Bewegung · 360° · AIR/AIV · X4/IX/XI');
+console.log('⌨️  space=Start  a=AIR  v=AIV  t=TEAM  x=Reset  z=Auto');
 
-setResponse('OK');
+// Initial
 setTimeout(function() {
-    log('✦ 4u bereit · Wähle eine Response', 'ok');
-}, 300);
+    state.running = true;
+    document.getElementById('btn-start').textContent = '⏸ STOP';
+    document.getElementById('state-display').textContent = '● läuft';
+    document.getElementById('state-display').style.color = 'var(--gold)';
+    log('▶ 4D-TEAM automatisch gestartet', 'team');
+}, 500);
 </script>
 </body>
 </html>
