@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>4u · Response Layer 7 · iki1uc · LIVE</title>
+<title>4u · RESPONSE LAYER 7 · LIVE · iki1uc</title>
 
 <style>
 :root {
@@ -28,16 +28,13 @@ body {
     grid-template-rows: auto 1fr auto;
     gap: 6px;
     padding: 12px;
-    background-image: 
-        radial-gradient(ellipse at 20% 80%, rgba(68,255,68,0.02) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 20%, rgba(255,215,61,0.02) 0%, transparent 50%);
 }
 
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid rgba(255,215,61,0.1);
+    border-bottom: 2px solid var(--gold);
     padding-bottom: 8px;
     flex-wrap: wrap;
     gap: 6px;
@@ -53,6 +50,7 @@ header h1 .layer { color: var(--echo); }
 header h1 .iki { color: var(--root); }
 #info-bar { font-size: 10px; color: #666; display: flex; gap: 12px; align-items: center; }
 
+/* ===== MAIN ===== */
 main {
     display: grid;
     grid-template-columns: 3fr 1.2fr;
@@ -89,6 +87,7 @@ main {
 }
 #canvas-overlay .ok { color: var(--ok); }
 
+/* ===== PANEL ===== */
 #panel {
     background: rgba(10,10,15,0.6);
     border: 1px solid rgba(255,255,255,0.04);
@@ -109,6 +108,17 @@ main {
     letter-spacing: 2px;
 }
 
+/* ===== ID-BLOCK ===== */
+#id-block {
+    background: rgba(255,255,255,0.02);
+    border-radius: 8px;
+    padding: 6px 8px;
+    border: 1px solid rgba(255,255,255,0.04);
+}
+#id-block .label { color: #666; font-size: 7px; text-transform: uppercase; letter-spacing: 1px; }
+#id-block .value { color: var(--gold); font-size: 10px; }
+
+/* ===== RESPONSES ===== */
 #responses {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -127,12 +137,13 @@ main {
     border-color: var(--gold);
     background: rgba(255,215,61,0.05);
 }
-.response .sym { font-size: 20px; display: block; margin-bottom: 2px; }
+.response .sym { font-size: 18px; display: block; margin-bottom: 2px; }
 .response .label { color: #666; font-size: 7px; text-transform: uppercase; letter-spacing: 1px; }
 .response .desc { color: #555; font-size: 6px; }
 .response.active { border-color: var(--gold); background: rgba(255,215,61,0.05); }
 .response.active .sym { filter: brightness(1.5); }
 
+/* ===== LOG ===== */
 #log {
     flex: 1;
     overflow-y: auto;
@@ -155,6 +166,7 @@ main {
 #log .msg.void { color: var(--void); }
 #log .msg.root { color: var(--root); }
 
+/* ===== METRIQUES ===== */
 #metriques {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -170,6 +182,7 @@ main {
 .metrique .label { color: #666; font-size: 6px; text-transform: uppercase; letter-spacing: 1px; }
 .metrique .value { font-size: 11px; font-weight: 300; }
 
+/* ===== CONTROLS ===== */
 #controls {
     display: flex;
     gap: 4px;
@@ -198,8 +211,6 @@ button.danger { border-color: var(--nok); color: var(--nok); }
 button.danger:hover { background: var(--nok); color: #000; }
 button.flow { border-color: var(--flow); color: var(--flow); }
 button.flow:hover { background: var(--flow); color: #000; }
-button.void { border-color: var(--void); color: var(--void); }
-button.void:hover { background: var(--void); color: #000; }
 
 footer {
     text-align: center;
@@ -240,15 +251,21 @@ footer .c { color: var(--gold); }
     <div id="canvas-wrap">
         <canvas id="layerCanvas"></canvas>
         <div id="canvas-overlay">
-            <span class="ok">●</span> 4u · Response Layer 7 · iki1uc
+            <span class="ok">●</span> 4u · Response Layer 7 · ID: 4u
         </div>
     </div>
 
     <div id="panel">
+        <!-- ID-BLOCK -->
+        <div id="id-block">
+            <div class="label">ID · 4u</div>
+            <div class="value">OK / NOK / FLOW / BREAK / ECHO / VOID / ROOT</div>
+        </div>
+
         <h3>✦ 7 RESPONSES</h3>
 
         <div id="responses">
-            <div class="response" data-resp="OK">
+            <div class="response active" data-resp="OK">
                 <span class="sym">✅</span>
                 <span class="label">OK</span>
                 <span class="desc">Zustimmung</span>
@@ -288,11 +305,11 @@ footer .c { color: var(--gold); }
         <div id="metriques">
             <div class="metrique">
                 <div class="label">RESPONSE</div>
-                <div class="value" id="resp-value" style="color:var(--gold);">—</div>
+                <div class="value" id="resp-value" style="color:var(--ok);">✅ OK</div>
             </div>
             <div class="metrique">
                 <div class="label">ZUSTAND</div>
-                <div class="value" id="state-value" style="color:#666;">IDLE</div>
+                <div class="value" id="state-value" style="color:var(--ok);">Zustimmung</div>
             </div>
             <div class="metrique">
                 <div class="label">φ</div>
@@ -301,15 +318,15 @@ footer .c { color: var(--gold); }
         </div>
 
         <div id="log">
-            <div class="entry"><span class="time">[init]</span> <span class="msg ok">✦ 4u · Response Layer 7 geladen</span></div>
+            <div class="entry"><span class="time">[init]</span> <span class="msg ok">✦ 4u · Response Layer 7 · ID: 4u</span></div>
             <div class="entry"><span class="time">[init]</span> <span class="msg flow">OK · NOK · FLOW · BREAK · ECHO · VOID · ROOT</span></div>
+            <div class="entry"><span class="time">[init]</span> <span class="msg ok">✅ System bereit · Wähle eine Response</span></div>
         </div>
 
         <div id="controls">
             <button class="primary" id="btn-ok">✅ OK</button>
             <button class="danger" id="btn-nok">❌ NOK</button>
             <button class="flow" id="btn-flow">🌊 FLOW</button>
-            <button class="void" id="btn-void">◌ VOID</button>
             <button id="btn-root">🌳 ROOT</button>
             <button id="btn-auto">▶ AUTO</button>
         </div>
@@ -322,7 +339,7 @@ footer .c { color: var(--gold); }
 
 <script>
 // ============================================================
-// 1. 4u · RESPONSE LAYER 7
+// 1. 4u · RESPONSE LAYER 7 · ID + LIVE
 // ============================================================
 
 const RESPONSES = {
@@ -416,36 +433,26 @@ function setResponse(key) {
     state.phi = state.respo;
     document.getElementById('phi-value').textContent = state.phi.toFixed(3);
 
-    // Canvas-Overlay
     document.querySelector('#canvas-overlay .ok').textContent = resp.sym;
 }
 
 // ============================================================
-// 6. RENDER — 4u LAYER
+// 6. RENDER
 // ============================================================
 function render() {
     ctx.clearRect(0, 0, W, H);
 
-    // Hintergrund
     const grad = ctx.createRadialGradient(cx, cy, 10, cx, cy, W * 0.6);
     grad.addColorStop(0, '#0a0a1a');
     grad.addColorStop(1, '#000');
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, W, H);
 
-    // 1. 7 Responses (Ring)
     drawResponsesRing();
-
-    // 2. Aktive Response
     drawActiveResponse();
-
-    // 3. RESPO-Kern
     drawRespo();
-
-    // 4. SYN/QUANT
     drawSynQuant();
 
-    // Update
     state.t += 0.008;
     if (state.running) {
         state.cycle++;
@@ -478,7 +485,6 @@ function drawResponsesRing() {
 
         const isActive = key === state.active;
 
-        // Punkt
         ctx.fillStyle = isActive ? `rgba(255,215,61,0.15)` : `rgba(255,255,255,0.02)`;
         ctx.shadowColor = isActive ? '#ffd700' : 'transparent';
         ctx.shadowBlur = isActive ? 20 : 0;
@@ -487,19 +493,16 @@ function drawResponsesRing() {
         ctx.fill();
         ctx.shadowBlur = 0;
 
-        // Symbol
         ctx.fillStyle = isActive ? '#ffd700' : '#333';
         ctx.font = isActive ? '14px Consolas' : '10px Consolas';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText(resp.sym, x, y - 16);
 
-        // Label
         ctx.fillStyle = isActive ? '#ffd700' : '#333';
         ctx.font = isActive ? '6px Consolas' : '5px Consolas';
         ctx.fillText(resp.label, x, y + 18);
 
-        // Verbindung
         if (isActive) {
             ctx.strokeStyle = 'rgba(255,215,61,0.05)';
             ctx.lineWidth = 0.5;
@@ -517,7 +520,6 @@ function drawActiveResponse() {
     const resp = state.response;
     const r = radius * 0.25;
 
-    // Glow
     const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, r + 20);
     glow.addColorStop(0, `${resp.color}15`);
     glow.addColorStop(1, 'rgba(0,0,0,0)');
@@ -526,7 +528,6 @@ function drawActiveResponse() {
     ctx.arc(cx, cy, r + 20, 0, Math.PI * 2);
     ctx.fill();
 
-    // Hauptsymbol
     ctx.fillStyle = resp.color;
     ctx.shadowColor = resp.color;
     ctx.shadowBlur = 30;
@@ -536,13 +537,11 @@ function drawActiveResponse() {
     ctx.fillText(resp.sym, cx, cy - 4);
     ctx.shadowBlur = 0;
 
-    // Label
     ctx.fillStyle = '#666';
     ctx.font = '8px Consolas';
     ctx.textBaseline = 'top';
     ctx.fillText(resp.label, cx, cy + 30);
 
-    // Desc
     ctx.fillStyle = '#444';
     ctx.font = '6px Consolas';
     ctx.textBaseline = 'top';
@@ -633,12 +632,6 @@ document.getElementById('btn-flow').addEventListener('click', function() {
     document.getElementById('state-display').style.color = '#4ff';
 });
 
-document.getElementById('btn-void').addEventListener('click', function() {
-    setResponse('VOID');
-    document.getElementById('state-display').textContent = '● VOID';
-    document.getElementById('state-display').style.color = '#666';
-});
-
 document.getElementById('btn-root').addEventListener('click', function() {
     setResponse('ROOT');
     document.getElementById('state-display').textContent = '● ROOT';
@@ -650,7 +643,7 @@ document.getElementById('btn-auto').addEventListener('click', function() {
     this.textContent = state.autoMode ? '⏸ PAUSE' : '▶ AUTO';
     if (state.autoMode) {
         state.running = true;
-        log('▶ AUTO · 4u wandert durch die Responses', 'flow');
+        log('▶ AUTO · 4u wandert', 'flow');
         if (window.autoInterval) clearInterval(window.autoInterval);
         window.autoInterval = setInterval(function() {
             const idx = Math.floor(Math.random() * RESPONSE_KEYS.length);
@@ -706,15 +699,14 @@ updateClock();
 // ============================================================
 // 12. INIT
 // ============================================================
-log('✦ 4u · Response Layer 7 · iki1uc', 'ok');
+log('✦ 4u · Response Layer 7 · ID: 4u', 'ok');
 log('OK · NOK · FLOW · BREAK · ECHO · VOID · ROOT', 'flow');
 log('⌨️  1=OK 2=NOK 3=FLOW 4=BREAK 5=ECHO 6=VOID 7=ROOT  space=Auto', 'echo');
 
-console.log('✦ 4u · Response Layer 7 · iki1uc');
+console.log('✦ 4u · Response Layer 7 · ID: 4u');
 console.log('OK · NOK · FLOW · BREAK · ECHO · VOID · ROOT');
 console.log('⌨️  1=OK 2=NOK 3=FLOW 4=BREAK 5=ECHO 6=VOID 7=ROOT  space=Auto');
 
-// Initial
 setResponse('OK');
 setTimeout(function() {
     log('✦ 4u bereit · Wähle eine Response', 'ok');
