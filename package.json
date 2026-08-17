@@ -1,0 +1,20 @@
+{
+  "name": "livedoc",
+  "version": "1.0.0",
+  "description": "LIVEDOC · 4u · Response Layer 7 · iki1uc",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./4u": "./4u.js",
+    "./syn": "./syn.js",
+    "./quant": "./quant.js",
+    "./respo": "./respo.js",
+    "./router": "./router.js",
+    "./stage": "./stage.js",
+    "./core": "./core.js"
+  },
+  "keywords": ["4u", "response", "layer7", "iki1uc", "livedoc"],
+  "license": "MIT",
+  "author": "iki1uc"
+}
